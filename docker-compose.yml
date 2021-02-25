@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  test-alpine:
-    container_name: test-alpine
+  paxful-alpine:
+    container_name: paxful-alpine
     restart: always
     image: nginx:alpine
     ports:
@@ -11,8 +11,8 @@ services:
       - ./:/var/www
       - ./docker/local/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
 
-  test-app:
-    container_name: test-app
+  paxful-app:
+    container_name: paxful-app
     restart: always
     build: ./docker/local/php-fpm
     working_dir: /var/www
@@ -23,10 +23,10 @@ services:
       - ./:/var/www
       - ./docker/local/php-fpm/php-ini.ini:/usr/local/etc/php/conf.d/90-custom.ini
 
-  test-db:
+  paxful-db:
     image: library/mysql:5.7.8
     restart: always
-    container_name: test-db
+    container_name: paxful-db
     env_file:
       - ".env"
     environment:
@@ -38,5 +38,5 @@ services:
       - "3306:3306"
 
 volumes:
-  test-db:
+  paxful-db:
     driver: local

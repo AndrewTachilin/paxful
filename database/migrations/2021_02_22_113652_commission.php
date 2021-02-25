@@ -18,7 +18,7 @@ class Commission extends Migration
         Schema::create('commissions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('currency_transfer_id')->unsigned();
-            $table->float('commission_fee');
+            $table->decimal('commission_fee');
             $table->timestamps();
 
             $table->foreign('currency_transfer_id')

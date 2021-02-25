@@ -19,7 +19,7 @@ class Commission extends Model
 
     protected $fillable = ['commission_fee', 'currency_transfer_id'];
 
-    public function saveTransferCommission(int $commissionFee, CurrencyTransfer $currencyTransfer): bool
+    public function saveTransferCommission(float $commissionFee, CurrencyTransfer $currencyTransfer): bool
     {
         return (new Commission(
                 [

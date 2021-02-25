@@ -19,7 +19,7 @@ class CurrencyTransfer extends Model
 
     protected $fillable = ['from_user_wallet','to_user_wallet','amount'];
 
-    public function saveTransfer(int $amount, UserWallet $ownerCardNumber, UserWallet $recipientWallet): CurrencyTransfer
+    public function saveTransfer(float $amount, UserWallet $ownerCardNumber, UserWallet $recipientWallet): CurrencyTransfer
     {
         $model = new CurrencyTransfer(
             [

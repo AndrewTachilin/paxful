@@ -39,10 +39,8 @@ class FundService implements FundServiceInterface
     public function send(int $amount, int $walletNumber, User $user): bool
     {
         $amount = $this->mathOperationService->convertAmountToKopecks($amount);
-
         $amountWithCommission = $this->mathOperationService->getAmountWithCommission($amount);
-
-        $commission = $this->mathOperationService->withdrawCommission($amount);
+        $commission = $this->mathOperationService->withdrawCommissionBanknotes($amount);
 
         try{
             DB::beginTransaction();
@@ -57,6 +55,7 @@ class FundService implements FundServiceInterface
             $this->commission->saveTransferCommission($commission, $currencyTransfer);
             DB::commit();
         }catch (\Throwable $e){
+            DB::rollBack();
             throw new TransactionFundException($e->getMessage());
         }
 

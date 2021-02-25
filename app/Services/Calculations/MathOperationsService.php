@@ -19,15 +19,29 @@ class MathOperationsService implements MathOperationsServiceInterface
         return (int) ceil($amount);
     }
 
-    public function withdrawCommission(int $amount): int
+    public function calculateCommission(int $amount): float
     {
         return (int) bcmul((string) $amount, (string) self::COMMISSION);
     }
 
-    public function getAmountWithCommission(int $amount): int
+    public function withdrawCommissionBanknotes(int $amount): float
     {
-        $commission = $this->withdrawCommission($amount);
+        $totalAmountInKopecks =  $this->calculateCommission($amount);
 
-        return (int) bcsub((string) $amount, (string) $commission);
+        return $this->convertToBanknotes($totalAmountInKopecks);
+    }
+
+    public function getAmountWithCommission(int $amount): float
+    {
+        $commission = $this->calculateCommission($amount);
+
+        $totalAmountInKopecks =  (int) bcsub((string) $amount, (string) $commission);
+
+        return $this->convertToBanknotes($totalAmountInKopecks);
+    }
+
+    public function convertToBanknotes($amountInKopecks): float
+    {
+        return (float) bcdiv((string) $amountInKopecks, self::PERCENT,3);
     }
 }

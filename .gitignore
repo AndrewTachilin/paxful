@@ -4,3 +4,4 @@
 .phpunit.result.cache
 public/storage
 .DS_Store
+/storage/logs

@@ -19,7 +19,7 @@ class CurrencyTransfers extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('from_user_wallet');
             $table->bigInteger('to_user_wallet');
-            $table->integer('amount');
+            $table->decimal('amount');
             $table->timestamps();
         });
     }

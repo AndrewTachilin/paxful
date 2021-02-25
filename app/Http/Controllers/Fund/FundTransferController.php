@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Fund;
 
 use App\Contracts\Services\Funds\FundServiceInterface;
-use App\Http\Controllers\BaseController;
 use App\Http\Requests\Fund\SendFundRequest;
 use Illuminate\Http\JsonResponse;
 use Laravel\Lumen\Routing\Controller;

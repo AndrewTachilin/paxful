@@ -18,7 +18,7 @@ class UserWallets extends Migration
         Schema::create('user_wallets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
-            $table->integer('wallet');
+            $table->bigInteger('wallet');
 
             $table->foreign('user_id')
                 ->references('id')
